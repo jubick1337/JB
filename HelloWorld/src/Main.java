@@ -14,7 +14,6 @@ public class Main {
 		ApiContextInitializer.init();
 		System.out.println("1");
 		System.out.println("Hekllo!");
-		// Instantiate Telegram Bots API
 		MyAmazingBot bot = new MyAmazingBot();
 		TelegramBotsApi botsApi = new TelegramBotsApi();
 		try {
