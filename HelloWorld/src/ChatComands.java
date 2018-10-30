@@ -1,37 +1,47 @@
-import java.util.HashMap;
+class ChatComands {
 
-public class ChatComands {
-
-	public static String ping() {
+	private static String ping() {
 		return "pong";
 	}
 
-	public static String help() {
+	private static String help() {
 		return "I am a simple 1337 translator. Just type /translate \"some_text\" (in russian) or /ping to check if i'm alive";
 	}
 
-	public static String translate(String[] input) {
-		StringBuilder res = new StringBuilder();
-		HashMap<String, String> transaltor = Library.getRusLeetDictionary();
-		for (int i = 9; i < input.length; i++) {
-			if (transaltor.containsKey(input[i])) {
-				res.append(transaltor.get(input[i]));
-			} else {
-				res.append(" ");
-			}
+	private static String translate(String text) {
+		try {
+			return Tools.Translate(text);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		System.out.println(res.toString());
-		return res.toString();
+		return "I AM DEAD";
 	}
+//	{
+//		StringBuilder res = new StringBuilder();
+//		HashMap<String, String> translator = Library.getRusLeetDictionary();
+//
+//		for (int i = 9; i < input.length; i++)
+//			//			if (translator.containsKey(input[i]))
+//			//			{
+//			//				res.append(translator.get(input[i]));
+//			//			}
+//			//			else
+//			//			{
+//			//				res.append(" ");
+//			//			}
+//			res.append(translator.getOrDefault(input[i], " "));
+//		System.out.println(res.toString());
+//		return res.toString();
+//	}
 
-	public static String executeCommand(String input) {
+	static String executeCommand(String input) {
 		switch (input.split(" ")[0]) {
 		case "/help":
 			return help();
 		case "/translate":
-			System.out.println("this a was call");
-
-			return translate(input.toUpperCase().split(" "));
+			System.out.println("Here we go");
+			String text = input.substring(input.indexOf(" ")).toUpperCase();
+			return translate(text);
 		case "/ping":
 			return ping();
 		default:

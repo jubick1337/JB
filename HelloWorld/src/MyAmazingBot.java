@@ -4,10 +4,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class MyAmazingBot extends TelegramLongPollingBot {
-
 	@Override
 	public void onUpdateReceived(Update update) {
-
 		if (update.hasMessage() && update.getMessage().hasText()) {
 			String message_text = update.getMessage().getText();
 			SendMessage answer_message = new SendMessage().setChatId(update.getMessage().getChatId())
