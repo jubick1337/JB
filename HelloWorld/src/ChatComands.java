@@ -40,7 +40,7 @@ class ChatComands {
 			return help();
 		case "/translate":
 			System.out.println("Here we go");
-			String text = input.substring(input.indexOf(" ")).toLowerCase();
+			String text = input.substring(input.indexOf(" ")).toUpperCase();
 			return translate(text);
 		case "/ping":
 			return ping();
