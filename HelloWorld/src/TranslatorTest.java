@@ -1,17 +1,16 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-class TranslatorTest
-{
-    @org.junit.jupiter.api.Test
-    void translate()
-    {
-        try
-        {
-            System.out.println(Translator.Translate("РїРѕРјРѕРіРёС‚Рµ СЏ С…РѕС‡Сѓ РµСЃС‚СЊ"));
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
+import org.junit.jupiter.api.Test;
+
+class TranslatorTest {
+
+	@Test
+	void translateTest() throws Exception {
+		var translator = new Translator();
+		assertEquals(translator.Translate("хорошо"), "XOPOWO");
+		assertEquals(translator.Translate("как"), "KAK");
+		assertEquals(translator.Translate("выпей еще чаю, да отведай этих французких булок"),
+				"Bb|/7Eu* EW*E 4A|0, gA OTBEgAu* -)TuX (|)PAHL|Y3KuX 6YJIOK");
+	}
+
 }
