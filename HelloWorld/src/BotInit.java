@@ -2,8 +2,8 @@ import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-class BotInit {
-
+class BotInit
+{
 	void Create() {
 		System.getProperties().put("proxySet", "true");
 		System.getProperties().put("socksProxyHost", "127.0.0.1");

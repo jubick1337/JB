@@ -1,12 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
 public class TranslateTable
 {
-    //defaultTable is simply if all keys in it has (.length == 1)
     protected HashMap<String, String> RightTable = new HashMap<>();
     protected HashMap<String, String> LeftTable = new HashMap<>();
     public final int RightMaxLen;
@@ -25,7 +23,7 @@ public class TranslateTable
 
         try (var br = new BufferedReader(new FileReader(path)))
         {
-            br.readLine();
+            var firstLine = br.readLine();
             while (true)
             {
                 lines[0] = br.readLine();
@@ -35,9 +33,7 @@ public class TranslateTable
                 //region Security of codes
                 lines[2] = br.readLine();
                 if (hasSplitter && lines[2] != null && !lines[2].isEmpty())
-                    throw new Exception(String.format("Every 3th line should be empty but №%d isn't", PairIndex));
-                //if (RightTable.containsKey(lines[0]) || LeftTable.containsKey(lines[1]))
-                //    throw new Exception("Table already contains key");
+                    throw new Exception(String.format("First and every 3th line after should be blank but №%d isn't", PairIndex * 3 + 1));
                 if (needsFanoCheck)
                     if (IsKeyFanoDangerous(RightTable, LeftTable, lines[0], lines[1]))
                         throw new Exception(String.format("Fano check failed on pair: [%s]->[%s]", lines[0], lines[1]));
@@ -57,11 +53,6 @@ public class TranslateTable
     private int GetMaxKeyLen(HashMap<String, String> table)
     {
         return table.keySet().stream().map(String::length).max(Comparator.naturalOrder()).orElse(Integer.MIN_VALUE);
-    }
-
-    private static boolean IsTableSimple(HashMap<String, String> table)
-    {
-        return table.keySet().stream().allMatch((s) -> s.length() == 1);
     }
 
     public static boolean IsPrefix(String string, String possiblePrefix)

@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class NewTranslator
 {
-    private static String defaultTablePath = "codes.txt";
+    private static String defaultTablePath = "leet.txt";
     private static TranslateTable defaultTable;
     static
     {
@@ -71,19 +71,20 @@ public class NewTranslator
         else if(table.LeftTable.containsKey(key))
             return DirectTranslate(table.LeftTable, table.LeftMaxLen, str);
         else // All chars aren't in table, we have to skip them all unchanged... And get sample string!
-            return str; 
+            return str;
     }
 
     public static String DirectTranslate(HashMap<String, String> map, Integer maxKeyLen, String str)
     {
         var builder = new StringBuilder();
+        //var translated = "";    //debug
         var len = str.length();
         var i = 0;
         var limit = 0;
         var met_unreadable = false;
         while(i < len)
         {
-            limit = Integer.min(maxKeyLen + i, len);
+            limit = Integer.min(maxKeyLen + i, len - i);
             met_unreadable = true;
             for(var j = 1; j <= limit; j++)
             {
@@ -101,6 +102,7 @@ public class NewTranslator
                 builder.append(str.charAt(i));
                 i++;
             }
+            //translated = str.substring(0, i);
         }
         return builder.toString();
     }

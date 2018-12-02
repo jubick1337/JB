@@ -1,8 +1,5 @@
 class ChatCommands
 {
-
-
-
 	private static String ping()
 	{
 		return "pong";
@@ -12,11 +9,11 @@ class ChatCommands
 		return "I am a simple 1337 translator. Just type /translate \"some_text\" (in russian) or /ping to check if i'm alive";
 	}
 
-	private static String translate(String text)
+	private static String Translate(String text)
 	{
 		try
 		{
-			return Translator.Translate(text);
+			return NewTranslator.Translate(text.toLowerCase());
 		}
 		catch (Exception e)
 		{
@@ -24,23 +21,6 @@ class ChatCommands
 		}
 		return "I AM DEAD";
 	}
-//	{
-//		StringBuilder res = new StringBuilder();
-//		HashMap<String, String> translator = Library.getRusLeetDictionary();
-//
-//		for (int i = 9; i < input.length; i++)
-//			//			if (translator.containsKey(input[i]))
-//			//			{
-//			//				res.append(translator.get(input[i]));
-//			//			}
-//			//			else
-//			//			{
-//			//				res.append(" ");
-//			//			}
-//			res.append(translator.getOrDefault(input[i], " "));
-//		System.out.println(res.toString());
-//		return res.toString();
-//	}
 
 	static String executeCommand(String input)
 	{
@@ -50,8 +30,8 @@ class ChatCommands
 				return help();
 			case "/translate":
 					System.out.println("Here we go");
-					String text = input.substring(input.indexOf(" ")).toUpperCase();
-					return translate(text);
+					var text = input.substring(input.indexOf(" ") + 1);
+					return Translate(text);
 			case "/ping":
 				return ping();
 			default:

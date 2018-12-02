@@ -7,7 +7,7 @@ class TranslatorTest
     {
         try
         {
-            System.out.println(Translator.Translate("помогите я хочу есть"));
+            System.out.println(NewTranslator.Translate("помогите я хочу есть"));
         }
         catch (Exception e)
         {

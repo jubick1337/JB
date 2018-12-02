@@ -5,19 +5,22 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class MyAmazingBot extends TelegramLongPollingBot {
 	@Override
-	public void onUpdateReceived(Update update) {
-		if (update.hasMessage() && update.getMessage().hasText()) {
-			String message_text = update.getMessage().getText();
-			SendMessage answer_message = new SendMessage().setChatId(update.getMessage().getChatId())
-					.setText(ChatComands.executeCommand(message_text));
-			try {
-				execute(answer_message);
-			} catch (TelegramApiException e) {
-				e.printStackTrace();
-			}
-
-		}
-
+    public void onUpdateReceived(Update update)
+    {
+        if (update.hasMessage() && update.getMessage().hasText())
+        {
+            String message_text = update.getMessage().getText();
+            SendMessage answer_message = new SendMessage().setChatId(update.getMessage().getChatId())
+                    .setText(ChatCommands.executeCommand(message_text));
+            try
+            {
+                execute(answer_message);
+            }
+            catch (TelegramApiException e)
+            {
+                e.printStackTrace();
+            }
+        }
 	}
 
 	@Override
