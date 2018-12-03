@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="Z:/Downloads/telegrambotsextensions-4.1-jar-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="Z:/Downloads/telegrambots-meta-4.1-jar-with-dependencies.jar"/>
 	<classpathentry kind="lib" path="Z:/Downloads/telegrambots-spring-boot-starter-4.1-jar-with-dependencies.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

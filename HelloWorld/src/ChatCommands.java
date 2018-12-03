@@ -6,7 +6,7 @@ class ChatCommands
 	}
 
 	private static String help() {
-		return "I am a simple 1337 translator. Just type /translate \"some_text\" (in russian) or /ping to check if i'm alive";
+		return "I am a simple 1337 translator. Just type /translate \"some_text\" (in russian or in english) or /ping to check if i'm alive";
 	}
 
 	private static String Translate(String text)

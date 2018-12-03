@@ -9,7 +9,7 @@ class BotInit
 		System.getProperties().put("socksProxyHost", "127.0.0.1");
 		System.getProperties().put("socksProxyPort", "1337");
 		ApiContextInitializer.init();
-		MyAmazingBot bot = new MyAmazingBot();
+		Bot bot = new Bot();
 		TelegramBotsApi botsApi = new TelegramBotsApi();
 		try {
 			System.out.println("Trying");
