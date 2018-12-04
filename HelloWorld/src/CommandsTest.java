@@ -11,6 +11,7 @@ class CommandsTest {
         assertEquals("|-|[]|/\\| /-\\/2€ ¥[](_)", ChatCommands.executeCommand(("/translate How are you".
                 toLowerCase())));
         assertEquals("/|][d|/|(3£'|'", ChatCommands.executeCommand("/translate привет"));
+        assertEquals("привет", ChatCommands.executeCommand("/translate" + ChatCommands.executeCommand("/translate привет")));
     }
 
     @Test

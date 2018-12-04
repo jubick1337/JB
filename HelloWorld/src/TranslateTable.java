@@ -35,7 +35,7 @@ public class TranslateTable
                 if (hasSplitter && lines[2] != null && !lines[2].isEmpty())
                     throw new Exception(String.format("First and every 3th line after should be blank but №%d isn't", PairIndex * 3 + 1));
                 if (needsFanoCheck)
-                    if (IsKeyFanoDangerous(RightTable, LeftTable, lines[0], lines[1]))
+                    if (isKeyFanoDangerous(RightTable, LeftTable, lines[0], lines[1]))
                         throw new Exception(String.format("Fano check failed on pair: [%s]->[%s]", lines[0], lines[1]));
                 //endregion
 
@@ -43,48 +43,48 @@ public class TranslateTable
                 LeftTable.put(lines[1], lines[0]);
                 PairIndex++;
             }
-            RightMaxLen = GetMaxKeyLen(RightTable);
-            LeftMaxLen = GetMaxKeyLen(LeftTable);
+            RightMaxLen = getMaxKeyLen(RightTable);
+            LeftMaxLen = getMaxKeyLen(LeftTable);
         }
     }
 
 
 
-    private int GetMaxKeyLen(HashMap<String, String> table)
+    private int getMaxKeyLen(HashMap<String, String> table)
     {
         return table.keySet().stream().map(String::length).max(Comparator.naturalOrder()).orElse(Integer.MIN_VALUE);
     }
 
-    public static boolean IsPrefix(String string, String possiblePrefix)
+    public static boolean isPrefix(String string, String possiblePrefix)
     {
         return possiblePrefix.length() <= string.length() &&
                 string.substring(0, possiblePrefix.length()).equals(possiblePrefix);
     }
 
-    public static boolean IsKeyFanoDangerous(
+    public static boolean isKeyFanoDangerous(
             HashMap<String, String> right,
             HashMap<String, String> left,
             String key, String value)
     {
-        return IsPrefix(key, value) || IsPrefix(value, key) ||
-                IsKeyFanoDangerous(left, key) ||
-                IsKeyFanoDangerous(right, key) ||
-                IsKeyFanoDangerous(left, value) ||
-                IsKeyFanoDangerous(right, value);
+        return isPrefix(key, value) || isPrefix(value, key) ||
+                isKeyFanoDangerous(left, key) ||
+                isKeyFanoDangerous(right, key) ||
+                isKeyFanoDangerous(left, value) ||
+                isKeyFanoDangerous(right, value);
     }
 
-    public static boolean IsKeyFanoDangerous(HashMap<String, String> table, String key)
+    public static boolean isKeyFanoDangerous(HashMap<String, String> table, String key)
     { // Key is a prefix of any other key already included?
-        return table.keySet().stream().anyMatch(other -> IsPrefix(other, key));
+        return table.keySet().stream().anyMatch(other -> isPrefix(other, key));
     }
 
-    public Pair<HashMap<String, String>> GetMaps()
+    public Pair<HashMap<String, String>> getMaps()
     {
         return RightMaxLen > LeftMaxLen ?
                 new Pair<>(RightTable, LeftTable) :
                 new Pair<>(LeftTable, RightTable);
     }
-    public Pair<Integer> GetLens()
+    public Pair<Integer> getLengths()
     {
         return RightMaxLen > LeftMaxLen ?
                 new Pair<>(RightMaxLen, LeftMaxLen) :

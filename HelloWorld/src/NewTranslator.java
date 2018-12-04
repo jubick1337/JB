@@ -16,15 +16,15 @@ public class NewTranslator
         }
     }
 
-    public static void SetDefaultTable(TranslateTable newTable)
+    public static void setDefaultTable(TranslateTable newTable)
     {
         defaultTable = newTable;
     }
 
-    public static String TryToFindExistingKey(TranslateTable table, String str)
+    public static String tryToFindExistingKey(TranslateTable table, String str)
     {
-        var maps = table.GetMaps();
-        var lens = table.GetLens();
+        var maps = table.getMaps();
+        var lens = table.getLengths();
         var strLen = str.length();
         var limit = 0;
         var i = 0;
@@ -32,7 +32,7 @@ public class NewTranslator
         //var seemsSecond;
         while(i < strLen)
         {
-            limit = Integer.min(lens.first + i, strLen);
+            limit = Integer.min(lens.first + i, strLen - i);
             for(var j = 1; j <= limit; j++)
             {
                 var sub = str.substring(i, i + j);
@@ -58,23 +58,23 @@ public class NewTranslator
         return str.substring(0, 1); //can't translate or
     }
 
-    public static String Translate(String str)
+    public static String translate(String str)
     {
-        return Translate(defaultTable, str);
+        return translate(defaultTable, str);
     }
 
-    public static String Translate(TranslateTable table, String str)
+    public static String translate(TranslateTable table, String str)
     {
-        var key = TryToFindExistingKey(table, str);
+        var key = tryToFindExistingKey(table, str);
         if(table.RightTable.containsKey(key))
-            return DirectTranslate(table.RightTable, table.RightMaxLen, str);
+            return directTranslate(table.RightTable, table.RightMaxLen, str);
         else if(table.LeftTable.containsKey(key))
-            return DirectTranslate(table.LeftTable, table.LeftMaxLen, str);
+            return directTranslate(table.LeftTable, table.LeftMaxLen, str);
         else // All chars aren't in table, we have to skip them all unchanged... And get sample string!
             return str;
     }
 
-    public static String DirectTranslate(HashMap<String, String> map, Integer maxKeyLen, String str)
+    public static String directTranslate(HashMap<String, String> map, Integer maxKeyLen, String str)
     {
         var builder = new StringBuilder();
         //var translated = "";    //debug

@@ -9,11 +9,11 @@ class ChatCommands
 		return "I am a simple 1337 translator. Just type /translate \"some_text\" (in russian or in english) or /ping to check if i'm alive";
 	}
 
-	private static String Translate(String text)
+	private static String translate(String text)
 	{
 		try
 		{
-			return NewTranslator.Translate(text.toLowerCase());
+			return NewTranslator.translate(text.toLowerCase());
 		}
 		catch (Exception e)
 		{
@@ -31,7 +31,7 @@ class ChatCommands
 			case "/translate":
 					System.out.println("Here we go");
 					var text = input.substring(input.indexOf(" ") + 1);
-					return Translate(text);
+					return translate(text);
 			case "/ping":
 				return ping();
 			default:
