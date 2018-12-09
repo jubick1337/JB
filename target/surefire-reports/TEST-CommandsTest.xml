@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="CommandsTest" time="0.909" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="CommandsTest" time="0.92" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.1+13-LTS"/>
@@ -27,7 +27,7 @@
     <property name="os.name" value="Windows 10"/>
     <property name="classworlds.conf" value="Z:\apache-maven-3.6.0\bin\..\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1251"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-11.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Python34\Lib\site-packages\PyQt4;C:\Python33\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;Z:\nodeJs\;C:\Program Files\Git\cmd;Z:\apache-maven-3.6.0\bin;C:\Users\matvey\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\matvey\AppData\Local\Programs\Python\Python37\;C:\Users\matvey\AppData\Local\Microsoft\WindowsApps;C:\Users\matvey\AppData\Roaming\npm;C:\Users\matvey\AppData\Local\atom\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.3\bin;;C:\Program Files\heroku\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-11.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Python34\Lib\site-packages\PyQt4;C:\Python33\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;Z:\nodeJs\;C:\Program Files\Git\cmd;Z:\apache-maven-3.6.0\bin;C:\Program Files\Java\jdk-11.0.1\bin;C:\Users\matvey\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\matvey\AppData\Local\Programs\Python\Python37\;C:\Users\matvey\AppData\Local\Microsoft\WindowsApps;C:\Users\matvey\AppData\Roaming\npm;C:\Users\matvey\AppData\Local\atom\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.3\bin;;C:\Program Files\heroku\bin;C:\Program Files\Java\jdk-11.0.1\bin;;."/>
     <property name="maven.conf" value="Z:\apache-maven-3.6.0\bin\../conf"/>
     <property name="jdk.debug" value="release"/>
     <property name="java.class.version" value="55.0"/>
@@ -44,7 +44,7 @@
     <property name="java.class.path" value="Z:\apache-maven-3.6.0\bin\..\boot\plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-11.0.1"/>
     <property name="user.language" value="ru"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -64,9 +64,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="translationTest" classname="CommandsTest" time="0.063"/>
+  <testcase name="translationTest" classname="CommandsTest" time="0.079"/>
   <testcase name="helpTest" classname="CommandsTest" time="0"/>
   <testcase name="pingTest" classname="CommandsTest" time="0"/>
   <testcase name="unexpectedCommandTest" classname="CommandsTest" time="0"/>
-  <testcase name="generalTest" classname="CommandsTest" time="0.843"/>
+  <testcase name="generalTest" classname="CommandsTest" time="0.829"/>
 </testsuite>
