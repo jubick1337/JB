@@ -21,7 +21,8 @@ public class TranslateTable
         var path = System.getProperty("user.dir") + File.separatorChar +
                 "src" + File.separatorChar +
                 "main" + File.separatorChar+
-                "java" + languageFileName;
+                "java" + File.separatorChar +
+                languageFileName;
         var lines = new String[3];
         var pairIndex = 0;
 
