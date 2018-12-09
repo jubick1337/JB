@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -17,7 +18,10 @@ public class TranslateTable
 
     public TranslateTable(String languageFileName, boolean hasSplitter, boolean needsFanoCheck) throws Exception
     {
-        var path = System.getProperty("user.dir") + "\\src\\main\\java\\" + languageFileName;
+        var path = System.getProperty("user.dir") + File.separatorChar +
+                "src" + File.separatorChar +
+                "main" + File.separatorChar+
+                "java" + languageFileName;
         var lines = new String[3];
         var pairIndex = 0;
 
