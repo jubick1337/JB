@@ -1,7 +1,9 @@
 Main.class
 Pair.class
+Weather.class
 NewTranslator.class
 TranslateTable.class
 ChatCommands.class
 BotInit.class
+WeatherParser.class
 Bot.class

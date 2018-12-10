@@ -3,7 +3,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-public class Bot extends TelegramLongPollingBot {
+class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update)
@@ -19,6 +19,17 @@ public class Bot extends TelegramLongPollingBot {
             }
             catch (TelegramApiException e)
             {
+                e.printStackTrace();
+            }
+        }
+        if (update.hasMessage() && update.getMessage().hasLocation()){
+
+            SendMessage t = new SendMessage().setChatId(update.getMessage().getChatId()).setText("backstab");
+            System.out.println("asd");
+            try{
+                execute(t);
+            }
+            catch (TelegramApiException e){
                 e.printStackTrace();
             }
         }

@@ -4,10 +4,10 @@ import java.io.FileReader;
 import java.util.Comparator;
 import java.util.HashMap;
 
-public class TranslateTable
+class TranslateTable
 {
-    protected HashMap<String, String> rightTable = new HashMap<>();
-    protected HashMap<String, String> leftTable = new HashMap<>();
+    final HashMap<String, String> rightTable = new HashMap<>();
+    final HashMap<String, String> leftTable = new HashMap<>();
     public final int rightMaxLen;
     public final int leftMaxLen;
 
@@ -16,7 +16,7 @@ public class TranslateTable
         this(languageFileName, true, true);
     }
 
-    public TranslateTable(String languageFileName, boolean hasSplitter, boolean needsFanoCheck) throws Exception
+    private TranslateTable(String languageFileName, boolean hasSplitter, boolean needsFanoCheck) throws Exception
     {
         var path = System.getProperty("user.dir") + File.separatorChar +
                 "src" + File.separatorChar +
@@ -58,13 +58,13 @@ public class TranslateTable
         return table.keySet().stream().map(String::length).max(Comparator.naturalOrder()).orElse(Integer.MIN_VALUE);
     }
 
-    public boolean isPrefix(String string, String possiblePrefix)
+    private boolean isPrefix(String string, String possiblePrefix)
     {
         return possiblePrefix.length() <= string.length() &&
                 string.substring(0, possiblePrefix.length()).equals(possiblePrefix);
     }
 
-    public boolean isKeyFanoDangerous(
+    private boolean isKeyFanoDangerous(
             HashMap<String, String> right,
             HashMap<String, String> left,
             String key, String value)
@@ -76,7 +76,7 @@ public class TranslateTable
                 isKeyFanoDangerous(right, value);
     }
 
-    public boolean isKeyFanoDangerous(HashMap<String, String> table, String key)
+    private boolean isKeyFanoDangerous(HashMap<String, String> table, String key)
     { // Key is a prefix of any other key already included?
         return table.keySet().stream().anyMatch(other -> isPrefix(other, key));
     }

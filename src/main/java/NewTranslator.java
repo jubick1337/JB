@@ -1,12 +1,12 @@
 import java.util.HashMap;
 
-public class NewTranslator
+class NewTranslator
 {
-    private String defaultTablePath = "leet.txt";
     private TranslateTable defaultTable;
     {
         try
         {
+            String defaultTablePath = "leet.txt";
             defaultTable = new TranslateTable(defaultTablePath);
         }
         catch (Exception e)
@@ -20,7 +20,7 @@ public class NewTranslator
         defaultTable = newTable;
     }
 
-    public String tryToFindExistingKey(TranslateTable table, String str)
+    private String tryToFindExistingKey(TranslateTable table, String str)
     {
         var maps = table.getMaps();
         var lens = table.getLengths();
@@ -62,7 +62,7 @@ public class NewTranslator
         return translate(defaultTable, str);
     }
 
-    public String translate(TranslateTable table, String str)
+    private String translate(TranslateTable table, String str)
     {
         var key = tryToFindExistingKey(table, str);
         if(table.rightTable.containsKey(key))
@@ -73,7 +73,7 @@ public class NewTranslator
             return str;
     }
 
-    public String directTranslate(HashMap<String, String> map, Integer maxKeyLen, String str)
+    private String directTranslate(HashMap<String, String> map, Integer maxKeyLen, String str)
     {
         var builder = new StringBuilder();
         //var translated = "";    //debug

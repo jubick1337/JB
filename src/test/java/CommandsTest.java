@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 class CommandsTest {
 
     @Test
@@ -31,5 +33,11 @@ class CommandsTest {
         Bot bot = new Bot();
         assertEquals("translate1337_bot", bot.getBotUsername());
         assertEquals("678358194:AAEtrqdE7cU44FUKSDelchq51s8Wq0oq1FI", bot.getBotToken());
+    }
+
+    @Test
+    void weatherTest(){
+        assertNotNull(new Weather().getReadyForecast("Moscow"));
+        assertEquals("Can't find \"asdalksj\" city. Try another one, for example: \"Yekaterinburg\" or \"Moscow\"", new Weather().getReadyForecast("asdalksj"));
     }
 }
