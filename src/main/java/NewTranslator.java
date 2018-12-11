@@ -67,9 +67,11 @@ class NewTranslator
         var key = tryToFindExistingKey(table, str);
         if(table.rightTable.containsKey(key))
             return directTranslate(table.rightTable, table.rightMaxLen, str);
-        else if(table.leftTable.containsKey(key))
+        else if(table.leftTable.containsKey(key)) {
+            System.out.println("Я не дебил");
             return directTranslate(table.leftTable, table.leftMaxLen, str);
-        else // All chars aren't in table, we have to skip them all unchanged... And get sample string!
+        }
+            else // All chars aren't in table, we have to skip them all unchanged... And get sample string!
             return str;
     }
 

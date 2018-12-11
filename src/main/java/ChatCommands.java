@@ -21,7 +21,7 @@ class ChatCommands
     {
         try
         {
-            return new NewTranslator().translate(text.toLowerCase());
+            return new NewTranslator().translate(text);
         }
         catch (Exception e)
         {
