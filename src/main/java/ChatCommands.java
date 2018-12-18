@@ -11,6 +11,8 @@ class ChatCommands
     }
 
     private String weather(double lat, double lon){
+        System.out.println(lat);
+        System.out.println(lon);
         return  new Weather().getReadyForecastByLocation(lat, lon);
     }
 
@@ -49,11 +51,12 @@ class ChatCommands
                 return translate(text);
             case "/ping":
                 return ping();
-            case "":
-                return weather(input.split(",").toString());
             default:
-                break;
+                if (input.contains("Location{")) {
+                    return weather(Double.valueOf(input.substring(input.indexOf("=") + 1, input.indexOf(","))),
+                            Double.valueOf(input.substring(input.lastIndexOf("=") + 1, input.lastIndexOf("}"))));
         }
         return "Use /help :)";
+        }
     }
 }
