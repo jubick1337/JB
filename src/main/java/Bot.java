@@ -24,10 +24,11 @@ class Bot extends TelegramLongPollingBot {
         }
         if (update.hasMessage() && update.getMessage().hasLocation()){
 
-            SendMessage t = new SendMessage().setChatId(update.getMessage().getChatId()).setText("backstab");
-            System.out.println("asd");
+            SendMessage answer_message = new SendMessage().setChatId(update.getMessage().getChatId()).
+                    setText(new ChatCommands().executeCommand(update.getMessage().getLocation().toString()));
+            System.out.println(update.getMessage().getLocation().toString());
             try{
-                execute(t);
+                execute(answer_message);
             }
             catch (TelegramApiException e){
                 e.printStackTrace();

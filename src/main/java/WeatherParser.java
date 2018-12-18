@@ -1,3 +1,4 @@
 interface WeatherParser {
-    String getReadyForecast(String city);
+    String getReadyForecastByLocation(double lat, double lan);
+    String getReadyForecastByCity(String city);
 }

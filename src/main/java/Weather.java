@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,14 +13,15 @@ import java.util.List;
 import java.util.Locale;
 
 class Weather implements WeatherParser{
-    private final String API_CALL = "https://api.openweathermap.org/data/2.5/forecast?q=";
+    private final String API_CALL_GEO = "https://api.openweathermap.org/data/2.5/forecast?lat= &lon= ";
+    private final String API_CALL_CITY = "https://api.openweathermap.org/data/2.5/forecast?q=";
     private final String API_KEY = "&units=metric&APPID=59982960e70e26d7bc10874f9150f6f9";
     private final  String USER_AGENT = "Mozilla/5.0";
     private final  DateTimeFormatter INPUT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private final  DateTimeFormatter OUTPUT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM-dd HH:mm", Locale.US);
 
     @Override
-    public String getReadyForecast(String city) {
+    public String getReadyForecastByCity(String city) {
         String result;
         try {
             String jsonRawData = downloadJsonRawData(city);
@@ -34,8 +36,24 @@ class Weather implements WeatherParser{
         return result;
     }
 
+    @Override
+    public String getReadyForecastByLocation(double lat, double lon) {
+        String result;
+        try {
+            String jsonRawData = downloadJsonRawData(lat, lon);
+            List<String> linesOfForecast = convertRawDataToList(jsonRawData);
+            result = String.format("%s%s", System.lineSeparator(), parseForecastDataFromList(linesOfForecast));
+        } catch (IllegalArgumentException e) {
+            return String.format("Are you on Earth?");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "The service is not available, please try later";
+        }
+        return result;
+    }
+
     private String downloadJsonRawData(String city) throws Exception {
-        String urlString = API_CALL + city + API_KEY;
+        String urlString = API_CALL_GEO + city + API_KEY;
         URL urlObject = new URL(urlString);
 
         HttpURLConnection connection = (HttpURLConnection) urlObject.openConnection();
@@ -46,7 +64,6 @@ class Weather implements WeatherParser{
         if (responseCode == 404) {
             throw new IllegalArgumentException();
         }
-
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
         StringBuilder response = new StringBuilder();
@@ -57,7 +74,29 @@ class Weather implements WeatherParser{
 
         return response.toString();
     }
+    private String downloadJsonRawData(double lat, double lon) throws Exception {
+        String urlString = API_CALL_GEO.replaceFirst(" ", String.valueOf(lat)).replaceFirst(" ", String.valueOf(lon))
+                + API_KEY;
+        URL urlObject = new URL(urlString);
 
+        HttpURLConnection connection = (HttpURLConnection) urlObject.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("User-Agent", USER_AGENT);
+
+        int responseCode = connection.getResponseCode();
+        if (responseCode == 404) {
+            throw new IllegalArgumentException();
+        }
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        return response.toString();
+    }
     private List<String> convertRawDataToList(String data) throws Exception {
         List<String> weatherList = new ArrayList<>();
 

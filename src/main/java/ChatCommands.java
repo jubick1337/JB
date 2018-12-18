@@ -7,7 +7,11 @@ class ChatCommands
 
     private String weather(String city){
         System.out.println(city);
-        return new Weather().getReadyForecast(city);
+        return new Weather().getReadyForecastByCity(city);
+    }
+
+    private String weather(double lat, double lon){
+        return  new Weather().getReadyForecastByLocation(lat, lon);
     }
 
     private String help() {
@@ -44,6 +48,8 @@ class ChatCommands
                 return translate(text);
             case "/ping":
                 return ping();
+            case "":
+                return weather(input.split(",").toString());
             default:
                 break;
         }

@@ -37,7 +37,7 @@ class CommandsTest {
 
     @Test
     void weatherTest(){
-        assertNotNull(new Weather().getReadyForecast("Moscow"));
-        assertEquals("Can't find \"asdalksj\" city. Try another one, for example: \"Yekaterinburg\" or \"Moscow\"", new Weather().getReadyForecast("asdalksj"));
+        assertNotEquals("", new Weather().getReadyForecastByCity("Moscow"));
+        assertEquals("Can't find \"asdalksj\" city. Try another one, for example: \"Yekaterinburg\" or \"Moscow\"", new Weather().getReadyForecastByCity("asdalksj"));
     }
 }
