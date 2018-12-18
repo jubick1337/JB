@@ -36,6 +36,7 @@ class ChatCommands
 
     String executeCommand(String input)
     {
+        System.out.println(input.split(" ")[0]);
         switch (input.split(" ")[0])
         {
             case "/weather":
